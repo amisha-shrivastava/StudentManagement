@@ -46,6 +46,7 @@ def register(request):
                 name=form.cleaned_data['name'],
                 email=form.cleaned_data['email'],
                 profile_pic=form.cleaned_data['profile_pic'],
+                password=form.cleaned_data['password'],
                 gender=form.cleaned_data['gender'],
                 course_preferences=form.cleaned_data['course_preferences']
             )

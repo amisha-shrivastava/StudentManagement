@@ -1,13 +1,30 @@
-<form method="post" action="{% url 'edit_student' student.id %}">
-    {% csrf_token %}
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Edit Profile</h1>
+<form method="POST" action="{% url 'edit_student' student.id %}">
+  {% csrf_token %}
+  <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="{{ student.name }}"><br>
-
+    <input type="text" class="form-control" id="name" name="name" value="{{ student.name }}">
+  </div>
+  <div class="form-group">
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="{{ student.email }}"><br>
-
+    <input type="email" class="form-control" id="email" name="email" value="{{ student.email }}">
+  </div>
+  <div class="form-group">
     <label for="gender">Gender:</label>
-    <input type="text" id="gender" name="gender" value="{{ student.gender }}"><br>
-
-    <button type="submit">Save</button>
+    <select class="form-control" id="gender" name="gender">
+      <option value="M" {% if student.gender == 'M' %}selected{% endif %}>Male</option>
+      <option value="F" {% if student.gender == 'F' %}selected{% endif %}>Female</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="course">Course:</label>
+    <input type="text" class="form-control" id="course" name="course" value="{{ student.course }}">
+  </div><br>
+  <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+{% endblock %}
